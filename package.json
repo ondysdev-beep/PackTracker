@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "pages:build": "rm -rf .next .vercel && npx @cloudflare/next-on-pages && mv .vercel/output/static/_worker.js .vercel/output/worker"
+    "pages:build": "npx @opennextjs/cloudflare@latest"
   },
   "dependencies": {
     "@google/generative-ai": "^0.24.1",

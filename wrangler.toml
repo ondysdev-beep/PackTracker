@@ -1,10 +1,8 @@
 name = "trackflow"
 compatibility_date = "2024-09-23"
 compatibility_flags = ["nodejs_compat"]
-main = ".vercel/output/worker/index.js"
+main = ".open-next/worker.js"
 
 [assets]
-directory = ".vercel/output/static"
-
-[vars]
-NEXT_PUBLIC_APP_URL = "https://trackflow.cz"
+directory = ".open-next/assets"
+binding = "ASSETS"
