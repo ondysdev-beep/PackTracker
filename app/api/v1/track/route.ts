@@ -7,8 +7,6 @@ import { detectCarrier } from "@/lib/tracking/carriers";
 import { summarizeShipmentEvents } from "@/lib/ai/gemini";
 import { apiRateLimiter, checkRateLimit } from "@/lib/ratelimit";
 
-export const runtime = "edge";
-
 const TrackSchema = z.object({
   trackingNumber: z.string().min(1, "Sledovací číslo je povinné"),
   carrier: z.string().optional(),

@@ -63,8 +63,6 @@ const CARRIERS_DATA: Record<
   },
 };
 
-export const runtime = "edge";
-
 export async function generateMetadata({
   params,
 }: {

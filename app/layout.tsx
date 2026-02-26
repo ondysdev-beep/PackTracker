@@ -3,8 +3,6 @@ import { Syne, DM_Mono, DM_Sans } from "next/font/google";
 import Link from "next/link";
 import "./globals.css";
 
-export const runtime = "edge";
-
 const syne = Syne({
   subsets: ["latin"],
   variable: "--font-syne",

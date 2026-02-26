@@ -1,8 +1,6 @@
 import { Suspense } from "react";
 import ShopTrackClient from "./ShopTrackClient";
 
-export const runtime = "edge";
-
 export default function WhiteLabelTrackPage() {
   return (
     <Suspense
