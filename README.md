@@ -1,36 +1,81 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# TrackFlow — Chytré sledování zásilek
 
-## Getting Started
+Bezplatná webová aplikace pro sledování zásilek. Všechny funkce zdarma pro všechny uživatele. Nabízíme i brandované sledovací stránky pro e-shopy.
 
-First, run the development server:
+## Tech Stack
+
+- **Frontend:** Next.js 14 (App Router), TypeScript, Tailwind CSS, Framer Motion
+- **Backend:** Next.js API Routes, Supabase (DB + Auth)
+- **Tracking API:** TrackingMore (abstraktní provider pattern)
+- **AI:** Google Gemini (shrnutí stavu zásilky v češtině)
+- **E-maily:** Resend
+- **SMS:** Twilio
+- **Rate limiting:** Upstash Redis
+- **Hosting:** Cloudflare Pages (OpenNext)
+
+## Spuštění lokálně
 
 ```bash
+# 1. Naklonujte repo a nainstalujte závislosti
+npm install
+
+# 2. Zkopírujte a vyplňte env proměnné
+cp .env.local.example .env.local
+
+# 3. Spusťte databázovou migraci
+# Otevřete Supabase SQL Editor a spusťte obsah souboru supabase/migration.sql
+
+# 4. Spusťte vývojový server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Otevřete [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Deployment na Cloudflare Pages
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Krok 1: Supabase
 
-## Learn More
+1. Vytvořte projekt na [supabase.com](https://supabase.com)
+2. Spusťte SQL migraci ze souboru `supabase/migration.sql` v SQL Editoru
+3. V Authentication → Providers zapněte Google OAuth a Magic Link
+4. Zkopírujte `SUPABASE_URL` a `SUPABASE_ANON_KEY` ze Settings → API
 
-To learn more about Next.js, take a look at the following resources:
+### Krok 2: Externí služby
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. **TrackingMore** — zaregistrujte se na [trackingmore.com](https://www.trackingmore.com) a získejte API klíč
+2. **Google Gemini** — vytvořte API klíč na [aistudio.google.com/apikey](https://aistudio.google.com/apikey)
+3. **Resend** — zaregistrujte se na [resend.com](https://resend.com), ověřte doménu
+4. **Twilio** — zaregistrujte se na [twilio.com](https://www.twilio.com) pro SMS notifikace
+5. **Upstash** — vytvořte Redis databázi na [upstash.com](https://upstash.com)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Krok 3: Cloudflare Pages
 
-## Deploy on Vercel
+1. Pushněte kód na GitHub
+2. Na [dash.cloudflare.com](https://dash.cloudflare.com) → Workers & Pages → Create → Connect to Git
+3. Framework preset: **Next.js (Static HTML Export)** nebo **Next.js**
+4. Build command: `npx @cloudflare/next-on-pages`
+5. Build output directory: `.vercel/output/static`
+6. Přidejte všechny environment variables z `.env.local.example`
+7. V Settings → Environment variables přidejte `NODE_VERSION` = `18`
+8. Deploy
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Struktura projektu
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```
+/app                    # Next.js App Router pages & API routes
+  /api                  # Serverless API endpoints
+  /track/[trackingNumber]  # Dynamická sledovací stránka
+  /dashboard            # Autentizovaná sekce
+  /business             # B2B landing page
+  /docs                 # API dokumentace
+  /dopravci/[carrier]   # SEO stránky dopravců
+  /[shopSlug]/track     # White-label sledování
+/components             # React komponenty
+/lib                    # Business logika, integrace
+/types                  # TypeScript typy
+/supabase               # SQL migrace
+```
+
+## Licence
+
+Proprietární software.

@@ -1,0 +1,111 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-bg: #0a0a0f;
+  --color-surface1: #111118;
+  --color-surface2: #1a1a25;
+  --color-border: rgba(255, 255, 255, 0.07);
+  --color-accent: #4fffb0;
+  --color-accent-blue: #4f8fff;
+  --color-text-primary: #f0f0f5;
+  --color-text-muted: #6b6b80;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  color-scheme: dark;
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text-primary);
+  font-family: "DM Sans", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+  background-color: rgba(79, 255, 176, 0.2);
+  color: var(--color-accent);
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-surface2);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-text-muted);
+}
+
+@layer base {
+  a {
+    @apply transition-colors duration-200;
+  }
+
+  button {
+    @apply transition-all duration-200;
+  }
+
+  input,
+  textarea {
+    @apply outline-none;
+  }
+}
+
+@layer components {
+  .glass-card {
+    @apply rounded-2xl border border-border bg-surface1 p-6;
+  }
+
+  .btn-primary {
+    @apply rounded-xl bg-accent px-6 py-3 font-medium text-bg transition-all duration-200 hover:brightness-110 focus:ring-2 focus:ring-offset-2;
+  }
+
+  .btn-primary:focus {
+    --tw-ring-color: #4fffb0;
+    --tw-ring-offset-color: #0a0a0f;
+  }
+
+  .btn-secondary {
+    @apply rounded-xl border border-border bg-surface2 px-6 py-3 font-medium text-text-primary transition-all duration-200 focus:ring-2 focus:ring-offset-2;
+  }
+
+  .btn-secondary:hover {
+    border-color: rgba(79, 255, 176, 0.3);
+    background-color: rgba(26, 26, 37, 0.8);
+  }
+
+  .btn-secondary:focus {
+    --tw-ring-color: #4fffb0;
+    --tw-ring-offset-color: #0a0a0f;
+  }
+
+  .input-field {
+    @apply w-full rounded-xl border border-border bg-surface1 px-4 py-3 font-sans text-text-primary placeholder:text-text-muted;
+  }
+
+  .input-field:focus {
+    border-color: rgba(79, 255, 176, 0.5);
+    box-shadow: 0 0 0 1px rgba(79, 255, 176, 0.3);
+  }
+
+  .gradient-text {
+    @apply bg-gradient-to-r from-accent to-accent-blue bg-clip-text text-transparent;
+  }
+}
