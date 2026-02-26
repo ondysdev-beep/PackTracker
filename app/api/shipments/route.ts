@@ -2,6 +2,8 @@ import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
 import { createServerSupabaseClient } from "@/lib/supabase/server";
 
+export const runtime = "edge";
+
 const QuerySchema = z.object({
   status: z.string().optional(),
   search: z.string().optional(),

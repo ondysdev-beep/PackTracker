@@ -2,6 +2,8 @@ import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
 import { summarizeShipmentEvents } from "@/lib/ai/gemini";
 
+export const runtime = "edge";
+
 const SummarizeSchema = z.object({
   events: z.array(
     z.object({

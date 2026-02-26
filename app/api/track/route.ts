@@ -3,8 +3,11 @@ import { z } from "zod";
 import { createServerSupabaseClient } from "@/lib/supabase/server";
 import { getTrackingProvider } from "@/lib/tracking/provider";
 import { detectCarrier } from "@/lib/tracking/carriers";
+
 import { summarizeShipmentEvents } from "@/lib/ai/gemini";
 import { trackRateLimiter, checkRateLimit } from "@/lib/ratelimit";
+
+export const runtime = "edge";
 
 const TrackSchema = z.object({
   trackingNumber: z.string().min(1, "Sledovací číslo je povinné"),

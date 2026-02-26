@@ -63,11 +63,7 @@ const CARRIERS_DATA: Record<
   },
 };
 
-export function generateStaticParams() {
-  return Object.keys(CARRIERS_DATA).map((slug) => ({
-    "carrier-slug": slug,
-  }));
-}
+export const runtime = "edge";
 
 export async function generateMetadata({
   params,

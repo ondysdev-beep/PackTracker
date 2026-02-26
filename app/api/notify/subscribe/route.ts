@@ -2,6 +2,8 @@ import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
 import { createServerSupabaseClient } from "@/lib/supabase/server";
 
+export const runtime = "edge";
+
 const SubscribeSchema = z.object({
   shipmentId: z.string().uuid("Neplatné ID zásilky"),
   email: z.boolean().default(true),
