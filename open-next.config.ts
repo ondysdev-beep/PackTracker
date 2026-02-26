@@ -1,2 +1,5 @@
-// Not needed for @cloudflare/next-on-pages
-export {};
+const config = {
+  default: {},
+};
+
+export default config;
