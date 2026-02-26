@@ -82,6 +82,14 @@ export default function DashboardPage() {
           <a href="/dashboard/settings" className="btn-secondary text-sm">
             Nastavení
           </a>
+          <form action="/auth/signout" method="POST">
+            <button
+              type="submit"
+              className="rounded-xl border border-red-500/30 bg-red-500/10 px-4 py-2 text-sm text-red-400 transition-all hover:bg-red-500/20"
+            >
+              Odhlásit se
+            </button>
+          </form>
         </div>
       </div>
 

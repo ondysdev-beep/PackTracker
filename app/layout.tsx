@@ -184,14 +184,20 @@ export default function RootLayout({
                 </h4>
                 <ul className="space-y-2">
                   <li>
-                    <span className="text-sm text-text-muted">
+                    <Link
+                      href="/podminky-sluzby"
+                      className="text-sm text-text-muted hover:text-accent"
+                    >
                       Podmínky služby
-                    </span>
+                    </Link>
                   </li>
                   <li>
-                    <span className="text-sm text-text-muted">
+                    <Link
+                      href="/ochrana-osobnich-udaju"
+                      className="text-sm text-text-muted hover:text-accent"
+                    >
                       Ochrana osobních údajů
-                    </span>
+                    </Link>
                   </li>
                 </ul>
               </div>
